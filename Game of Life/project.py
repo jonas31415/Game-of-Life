@@ -8,13 +8,8 @@
 #Creating a Graphical User Interface with tkinter
 
 import tkinter as tk
-import time
 
-#from subprocess import Popen
-
-#import asyncio
-
-size=10
+size=20
 
 root=tk.Tk(className="John Conway's Game of Life")
 
@@ -22,7 +17,7 @@ root=tk.Tk(className="John Conway's Game of Life")
 """Create Start/Stop-Button:"""
 """========================="""
 startButton=tk.Button(root, text="Start", command=lambda:start(), bg="red")
-startButton.grid(columnspan=2,rowspan=1, column=0, row=size+1)
+startButton.grid(columnspan=5,rowspan=1, column=1, row=size+1)
 
 def start():
     global running
@@ -30,7 +25,7 @@ def start():
     run()
 
 stopButton=tk.Button(root, text="Stop", command=lambda:stop(), bg="red")
-stopButton.grid(columnspan=2,rowspan=1, column=2, row=size+1)
+stopButton.grid(columnspan=5,rowspan=1, column=5, row=size+1)
 
 def stop():
     global running
@@ -63,7 +58,7 @@ for i in range(0,size):
     for j in range(0,size):
         button=buttons(i, j)
         fieldButtons[i].append(button)
-        fieldButtons[i][j].button.grid(columnspan =1,rowspan=1, column=i, row=j)
+        fieldButtons[i][j].button.grid(columnspan=1,rowspan=1, column=i, row=j)
 
 """==============================="""
 """Create Functions for execution:"""
@@ -100,17 +95,12 @@ def evolve(fM, size):
     for i in range(0, size):
         for j in range(0,size):
             x=countNeighbours(fM, i, j, size)
-            #print(x)
             if fM[i][j].color==0 and x==3:
                 fM[i][j].born=1
             elif fM[i][j].color==1 and x<2:
                 fM[i][j].die=1
-            elif fM[i][j].color==1 and 2<=x<=3:
-                fM[i][j].color=1
             elif fM[i][j].color==1 and x>3:
                 fM[i][j].die=1
-            else:
-                fM[i][j].color=0
 
     for i in range(0, size):
         for j in range(0,size):
