@@ -9,7 +9,10 @@
 
 import tkinter as tk
 import time
-import asyncio
+
+#from subprocess import Popen
+
+#import asyncio
 
 size=10
 
@@ -18,34 +21,25 @@ root=tk.Tk(className="John Conway's Game of Life")
 """========================="""
 """Create Start/Stop-Button:"""
 """========================="""
-class startButton:
-    def __init__(self):
-        self.button=tk.Button(root, text="Start", command=lambda:self.start(), bg="red")
-        self.bool=True
-    def start(self):
-        self.bool=True
-        #while(self.bool):
-        for t in range(0,1):
-            #print(t)
-            evolve(fieldButtons, size)
+startButton=tk.Button(root, text="Start", command=lambda:start(), bg="red")
+startButton.grid(columnspan=2,rowspan=1, column=0, row=size+1)
 
-#python coroutines
-#onclick von start ruft asyncio auf
-#docs.python.org asyncio-task test123456
+def start():
+    global running
+    running = True
+    run()
 
+stopButton=tk.Button(root, text="Stop", command=lambda:stop(), bg="red")
+stopButton.grid(columnspan=2,rowspan=1, column=2, row=size+1)
 
-startBtn=startButton()
-startBtn.button.grid(columnspan=2,rowspan=1, column=0, row=size+1)
+def stop():
+    global running
+    running =False
 
-class stopButton:
-    def __init__(self):
-        self.button=tk.Button(root, text="Stop", command=lambda:self.Stop(), bg="red")
-    def Stop():
-        startBtn.bool=False
-
-stopBtn=stopButton()
-stopBtn.button.grid(columnspan=2,rowspan=1, column=2, row=size+1)
-
+def run():
+    if running:
+      evolve(fieldButtons, size)
+    root.after(1000, run)
 
 """============="""
 """Create Field:"""
@@ -70,7 +64,6 @@ for i in range(0,size):
         button=buttons(i, j)
         fieldButtons[i].append(button)
         fieldButtons[i][j].button.grid(columnspan =1,rowspan=1, column=i, row=j)
-
 
 """==============================="""
 """Create Functions for execution:"""
