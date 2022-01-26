@@ -9,6 +9,7 @@
 
 import tkinter as tk
 import time
+import asyncio
 
 size=10
 
@@ -27,11 +28,10 @@ class startButton:
         for t in range(0,1):
             #print(t)
             evolve(fieldButtons, size)
-            time.sleep(0.5)
 
 #python coroutines
 #onclick von start ruft asyncio auf
-#docs.python.org asyncio-task
+#docs.python.org asyncio-task test123456
 
 
 startBtn=startButton()
