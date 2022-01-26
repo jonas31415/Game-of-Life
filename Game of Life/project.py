@@ -9,7 +9,7 @@
 
 import tkinter as tk
 
-size=20
+size=30
 
 root=tk.Tk(className="John Conway's Game of Life")
 
