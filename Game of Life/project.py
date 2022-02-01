@@ -3,13 +3,14 @@
 # 
 # Names
 #     Jonas Lippl, Mat.Nr. 2101758
+#     Nikolas Jockisch, Mat.Nr. 
 
 #John Conway's Game of Life (with periodic boundary conditions)
 #Creating a Graphical User Interface with tkinter
 
 import tkinter as tk
 
-size=30
+size=35
 
 root=tk.Tk(className="John Conway's Game of Life")
 
@@ -50,8 +51,12 @@ class buttons:
         self.born=0
         self.die=0
     def onclick(self):
-        self.button.configure(bg="blue")
-        self.color=1
+        if self.color==0:
+            self.button.configure(bg="blue")
+            self.color=1
+        else:
+            self.button.configure(bg="grey")
+            self.color=0
 
 for i in range(0,size):
     fieldButtons.append([])
